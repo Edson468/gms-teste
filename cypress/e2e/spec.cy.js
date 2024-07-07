@@ -6,7 +6,6 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
     cy.get('#recommendations > :nth-child(1) > img').click()
     cy.get('#search-input').type('Naufrago')
     cy.get('#search-button').click()
-    cy.get('#results-section > :nth-child(1) > img').click()
     cy.get('#clear-button').click()
   })
 })
