@@ -10,6 +10,12 @@ describe('US-00: Funcionalidade : busca de filme', () => {
         cy.get('#search-button').click()
         cy.get('#results-section').should('contain', 'Matrix')
     });
+
+    it.only('Deve buscar filmes inexistente', () => {
+        cy.get('#search-input').type('Ma98td')
+        cy.get('#search-button').click()
+        cy.get('#results-section').should('contain', 'Filme não encontrado.')
+    });
     
     it('Deve buscar filmes com sucesso de uma lista', () => {
         cy.fixture('filmes').then((filmes) =>{
@@ -19,7 +25,7 @@ describe('US-00: Funcionalidade : busca de filme', () => {
         });
     });
 
-    it.only('Deve buscar filmes da lista inteira', () => {
+    it('Deve buscar filmes da lista inteira', () => {
         cy.fixture('filmes').each((filmes) =>{
             cy.get('#search-input').clear().type(filmes.titulo)
             cy.get('#search-button').click({force: true})
