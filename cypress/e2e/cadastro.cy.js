@@ -49,4 +49,9 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
     cy.get('#signup-response').should('contain', 'E-mail deve ser um email válido')
   });
 
+  it('Deve validar a politica de privacidade', () => {
+    cy.get('a').should('be.visible')
+    cy.get('a').should('contain', 'Política de Privacidade')
+  });
+
 })
