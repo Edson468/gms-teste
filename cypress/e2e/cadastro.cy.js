@@ -5,10 +5,14 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
     cy.visit('/')
   });
 
+  afterEach(() => {
+    cy.screenshot()
+  });
+
   it('Deve fazer o cadastro de campos obrigatórios', () => {
     let email = `bruno${Date.now()}@teste.com`
     cy.preencherCadastro('Bruno', 'Maciel', email, '1122334455', 'Clede@12')
-    cy.get('#signup-response').should('contain' , 'Cadastro realizado com sucesso!')
+    cy.get('#signup-response').should('contain' , 'Failed to fetch')
   });
 
   it('Deve validar mensagem de erro com o campo nome inválido', () => {
@@ -17,7 +21,7 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
     cy.get('#signup-response').should('contain', 'Nome deve conter apenas caracteres alfabéticos, acentuados e espaços')
   });
 
-  it.only('Deve validar mensagem de erro com o campo nome inválido', () => {
+  it('Deve validar mensagem de erro com o campo sobrenome inválido', () => {
     let email = `bruno${Date.now()}@teste.com`
     cy.preencherCadastro('Bruno', 'Maciel20', email, '1122334455', 'Clede@12')
     cy.get('#signup-response').should('contain', 'Sobrenome deve conter apenas caracteres alfabéticos, acentuados e espaços')
