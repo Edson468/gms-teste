@@ -12,7 +12,7 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
   it('Deve fazer o cadastro de campos obrigatórios', () => {
     let email = `bruno${Date.now()}@teste.com`
     cy.preencherCadastro('Bruno', 'Maciel', email, '1122334455', 'Clede@12')
-    cy.get('#signup-response').should('contain' , 'Failed to fetch')
+    cy.get('#signup-response').should('contain' , 'Cadastro realizado com sucesso!')
   });
 
   it('Deve validar mensagem de erro com o campo nome inválido', () => {
