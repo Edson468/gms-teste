@@ -5,9 +5,6 @@ describe('US-00: Funcionalidade : busca de filme', () => {
         cy.visit('/')
     });
 
-    afterEach(() => {
-        cy.screenshot()
-      });
 
     it('Deve buscar filmes com sucesso', () => {
         cy.get('#search-input').type('Matrix')
@@ -35,6 +32,14 @@ describe('US-00: Funcionalidade : busca de filme', () => {
             cy.get('#search-button').click({force: true})
             cy.get('#results-section').should('contain', filmes.titulo) 
         }) ;
+    });
+
+    it('Deve limpar lista de filmes', () => {
+        cy.get('#search-input').type('Matrix')
+        cy.get('#search-button').click()
+        cy.get('#results-section').should('contain', 'Matrix')
+        cy.wait(2000)
+        cy.get('#clear-button').click()
     });
 
 });
